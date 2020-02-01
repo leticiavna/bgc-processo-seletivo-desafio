@@ -9,7 +9,7 @@ import config from './config';
 
 Amplify.configure({
   Auth: {
-    mandatorySignIn: false, // nao quero q só possa acessar o site se tiver logado
+    mandatorySignIn: true, // so pode acessar se logar?
     region: config.cognito.REGION,
     userPoolId: config.cognito.USER_POOL_ID,
     identityPoolId: config.cognito.IDENTITY_POOL_ID,
