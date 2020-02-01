@@ -37,7 +37,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:us-east-2:420758696810:table/purchases"
-
+      
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
   # - path: url path is /purchases
@@ -96,3 +96,7 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+          
+resources:
+  # API Gateway Errors
+  - ${file(resources/api-gateway-errors.yml)}
