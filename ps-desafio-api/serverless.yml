@@ -15,7 +15,8 @@ provider:
   name: aws
   runtime: nodejs10.x
   stage: prod
-  region: us-east-1
+  region: us-east-1 # TODO: verificar se posso alterar pra us-east-2, 
+  # pois é a região do dynamo e c9
 
 
   # These environment variables are made available to our functions
@@ -35,7 +36,7 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:us-east-1:*:*"
+      Resource: "arn:aws:dynamodb:us-east-2:420758696810:table/purchases"
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
