@@ -50,3 +50,49 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
+
+  get:
+    # Defines an HTTP API endpoint that calls the main function in get.js
+    # - path: url path is /purchases/{id}
+    handler: get.main
+    events:
+      - http:
+          path: purchases/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  
+  list:
+    # Define um endpoint na api que retorna a lista de compras na api em list.js
+    # no caso: retorna a lista de um certo usuario, nao é um getall
+    # path: /purchases
+    handler: list.main
+    events:
+      - http:
+          path: purchases
+          method: get
+          cors: true
+          authorizer: aws_iam
+        
+  
+  update:
+    # Define um endpoint pra atualizar a compra (reserva) em update.js
+    # path: /purchases/{id}
+    handler: update.main
+    events:
+      - http:
+          path: purchases/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  
+  delete:
+    # Defines an HTTP API endpoint that calls the main function in delete.js
+    # - path: url path is /purchases/{id}
+    handler: delete.main
+    events:
+      - http:
+          path: purchases/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
