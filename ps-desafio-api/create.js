@@ -13,7 +13,7 @@ export function main(event, context, callback) {
       purchaseId: uuid.v1(),
       content: data.content, //parsed from request body
       attachment: data.attachment, // parsed from request body
-      createdAt: Date.now() // 
+      createdAt: Date.now()
     }
   };
 

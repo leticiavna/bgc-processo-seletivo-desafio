@@ -21,8 +21,7 @@ provider:
   # These environment variables are made available to our functions
   # under process.env.
   environment:
-    tableName: purchases
-  #  sampleEnvVar: ${env:SAMPLE_ENV_VAR}
+    tableName: ${env:DYNAMO_TABLE_NAME}
 
   # 'iamRoleStatements' defines the permission policy for the Lambda function.
   # In this case Lambda functions are granted with permissions to access DynamoDB.
@@ -40,16 +39,13 @@ provider:
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
-  # - path: url path is /notes
-  # - method: POST request
-  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
-  #     domain api call
+  # - path: url path is /purchases
   # - authorizer: authenticate using the AWS IAM role
   create:
     handler: create.main
     events:
       - http:
-          path: notes
+          path: purchases
           method: post
           cors: true
           authorizer: aws_iam
