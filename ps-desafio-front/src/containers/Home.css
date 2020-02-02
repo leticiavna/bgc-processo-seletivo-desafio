@@ -12,3 +12,14 @@
 .Home .lander p {
   color: #999;
 }
+
+.Home .Purchase {
+  padding: 60px 0;
+}
+
+.Home .Purchase .form-purchase-minion {
+  margin: 0 auto;
+  max-width: 320px;
+  border-radius: 20px;
+  background-color: #949699;
+}
