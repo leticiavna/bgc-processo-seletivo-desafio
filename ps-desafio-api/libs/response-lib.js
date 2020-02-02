@@ -9,6 +9,7 @@ export function failure(body) {
 }
 
 function buildResponse(statusCode, body) {
+  console.log(statusCode, body);
   return {
     statusCode: statusCode,
     headers: {

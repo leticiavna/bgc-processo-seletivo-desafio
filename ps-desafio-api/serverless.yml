@@ -11,10 +11,17 @@ plugins:
   - serverless-offline
   - serverless-dotenv-plugin # Load .env as environment variables
 
+
+# TODO
+# custom:
+#   secrets: ${file(secrets.json)}
+
 provider:
   name: aws
   runtime: nodejs10.x
   stage: prod
+  # TODO: environments
+  # stage: ${env:.NODE_ENV}
   region: us-east-1 # TODO: verificar se posso alterar pra us-east-2, 
   # pois é a região do dynamo e c9
 
@@ -23,9 +30,11 @@ provider:
   # under process.env.
   environment:
     tableName: ${env:DYNAMO_TABLE_NAME}
+    # NODE_ENV: ${self:custom.secrets.NODE_ENV}
+    EMAIL: ${env:FROM_MAIL}
+    DOMAIN: ${env:DOMAIN}
 
   # 'iamRoleStatements' defines the permission policy for the Lambda function.
-  # In this case Lambda functions are granted with permissions to access DynamoDB.
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -36,7 +45,8 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:us-east-2:420758696810:table/purchases"
+        - ses:SendEmail
+      Resource: "*"
       
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
@@ -96,6 +106,17 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+  
+  mail:
+    # Define uma chamada HTTP pra envio de emails quando uma reserva é feita
+    # Chama a main de mail.js
+    # path: /mail
+    handler: mail.main
+    events:
+      - http:
+          path: mail
+          method: post
+          cors: true
           
 resources:
   # API Gateway Errors
