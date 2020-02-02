@@ -47,4 +47,4 @@ module.exports.mail = async (event) => {
   } catch (err) {
     return failure(500, err);
   }
-}
+};
