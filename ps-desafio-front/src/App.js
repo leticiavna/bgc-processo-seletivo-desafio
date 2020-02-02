@@ -54,7 +54,7 @@ function App(props) {
             // TODO: por alguma razão a <> (short syntax) não funciona aqui (talvez seja o c9?), logo tem que usar o Fragment
             : <Fragment> 
                 <LinkContainer to="/signup">
-                  <NavItem>Signup</NavItem>
+                  <NavItem>Cadastre-se</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/login">
                   <NavItem>Login</NavItem>
