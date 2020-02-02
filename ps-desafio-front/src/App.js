@@ -39,20 +39,32 @@ function App(props) {
 
   return (
     !isAuthenticating &&
-    <div className="App container">
+    <div className="App">
       <Navbar fluid collapseOnSelect>
         <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/">Lorem Ipsum</Link>
-          </Navbar.Brand>
+            
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav pullRight>
             {isAuthenticated
-            ? <NavItem onClick={handleLogout}>Logout</NavItem>
-            // TODO: por alguma razão a <> (short syntax) não funciona aqui (talvez seja o c9?), logo tem que usar o Fragment
-            : <Fragment> 
+            ?
+            <Nav className="justify-content-center" activeKey="/home">
+            <Fragment>
+              <LinkContainer to="/">
+                <NavItem>Active</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/">
+                <NavItem>Active</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/">
+                <NavItem>Active</NavItem>
+              </LinkContainer>
+              <NavItem onClick={handleLogout}>Logout</NavItem>
+            </Fragment>
+            </Nav>
+            : // TODO: por alguma razão a <> (short syntax) não funciona aqui (talvez seja o c9?), logo tem que usar o Fragment
+             <Nav className="justify-content-center" activeKey="/home">
+              <Fragment> 
                 <LinkContainer to="/signup">
                   <NavItem>Cadastre-se</NavItem>
                 </LinkContainer>
@@ -60,8 +72,8 @@ function App(props) {
                   <NavItem>Login</NavItem>
                 </LinkContainer>
               </Fragment>
-            }
           </Nav>
+            }
         </Navbar.Collapse>
       </Navbar>
       <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
