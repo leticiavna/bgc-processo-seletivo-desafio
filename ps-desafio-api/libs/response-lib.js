@@ -1,4 +1,5 @@
 // evita replicação de código
+const DOMAIN = process.env.DOMAIN;
 
 export function success(body) {
   return buildResponse(200, body);
@@ -9,11 +10,13 @@ export function failure(body) {
 }
 
 function buildResponse(statusCode, body) {
-  console.log(statusCode, body);
+  console.log(statusCode);
+  console.log(body);
   return {
     statusCode: statusCode,
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": DOMAIN,
+      'Access-Control-Allow-Headers': 'x-requested-with',
       "Access-Control-Allow-Credentials": true
     },
     body: JSON.stringify(body)

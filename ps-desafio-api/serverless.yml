@@ -12,26 +12,20 @@ plugins:
   - serverless-dotenv-plugin # Load .env as environment variables
 
 
-# TODO
-# custom:
-#   secrets: ${file(secrets.json)}
-
 provider:
   name: aws
   runtime: nodejs10.x
-  stage: prod
-  # TODO: environments
-  # stage: ${env:.NODE_ENV}
+  stage: ${env:NODE_ENV}
   region: us-east-1 # TODO: verificar se posso alterar pra us-east-2, 
   # pois é a região do dynamo e c9
-
 
   # These environment variables are made available to our functions
   # under process.env.
   environment:
     tableName: ${env:DYNAMO_TABLE_NAME}
-    # NODE_ENV: ${self:custom.secrets.NODE_ENV}
-    EMAIL: ${env:FROM_MAIL}
+    NODE_ENV: ${env:NODE_ENV}
+    EMAIL: ${env:FROM_EMAIL}
+    CC_EMAIL: ${env:CC_EMAIL}
     DOMAIN: ${env:DOMAIN}
 
   # 'iamRoleStatements' defines the permission policy for the Lambda function.
@@ -45,7 +39,10 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-        - ses:SendEmail
+      Resource: "arn:aws:dynamodb:us-east-2:420758696810:*/*"
+    - Effect: "Allow"
+      Action:
+        - "ses:SendEmail"
       Resource: "*"
       
 functions:
@@ -108,9 +105,6 @@ functions:
           authorizer: aws_iam
   
   mail:
-    # Define uma chamada HTTP pra envio de emails quando uma reserva é feita
-    # Chama a main de mail.js
-    # path: /mail
     handler: mail.main
     events:
       - http:
