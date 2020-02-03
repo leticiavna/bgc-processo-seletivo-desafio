@@ -1,10 +1,14 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Link, withRouter } from "react-router-dom";
-import { Nav, Navbar, NavItem } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { withRouter } from "react-router-dom";
 import "./App.css";
 import Routes from "./Routes";
 import { Auth } from "aws-amplify";
+import AppBar from '@material-ui/core/AppBar';
+import Link from '@material-ui/core/Link';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+
 
 // propriedades parametro
 function App(props) {
@@ -40,42 +44,34 @@ function App(props) {
   return (
     !isAuthenticating &&
     <div className="App">
-      <Navbar fluid collapseOnSelect>
-        <Navbar.Header>
-            
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-            {isAuthenticated
-            ?
-            <Nav className="justify-content-center" activeKey="/home">
-            <Fragment>
-              <LinkContainer to="/">
-                <NavItem>Active</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/">
-                <NavItem>Active</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/">
-                <NavItem>Active</NavItem>
-              </LinkContainer>
-              <NavItem onClick={handleLogout}>Logout</NavItem>
-            </Fragment>
-            </Nav>
-            : // TODO: por alguma razão a <> (short syntax) não funciona aqui (talvez seja o c9?), logo tem que usar o Fragment
-             <Nav className="justify-content-center" activeKey="/home">
-              <Fragment> 
-                <LinkContainer to="/signup">
-                  <NavItem>Cadastre-se</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/login">
-                  <NavItem>Login</NavItem>
-                </LinkContainer>
-              </Fragment>
-          </Nav>
-            }
-        </Navbar.Collapse>
-      </Navbar>
+    <AppBar position="static">
+        <Toolbar>
+        {isAuthenticated
+          ?
+          <Fragment>
+          <Link href="/">
+            <Typography variant="h6">
+              home
+            </Typography>
+            </Link>
+          <Button color="inherit" onClick={handleLogout}>Logout</Button>
+          </Fragment>
+          :
+          <Fragment>
+            <Link href="/signup">
+              <Typography variant="h6">
+              Cadastre-se
+              </Typography>
+            </Link>
+            <Link href="/login">
+              <Typography variant="h6">
+              Login
+              </Typography>
+            </Link>
+          </Fragment>
+        }
+        </Toolbar>
+      </AppBar>
       <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
     </div>
   );

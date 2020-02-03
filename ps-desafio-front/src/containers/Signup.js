@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import {
-  HelpBlock,
-  FormGroup,
-  FormControl,
-  ControlLabel
-} from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
 import "./Signup.css";
 import { Auth } from "aws-amplify";
+import TextField from '@material-ui/core/TextField';
+
+
 
 export default function Signup(props) {
   const [fields, handleFieldChange] = useFormFields({
@@ -83,16 +80,19 @@ export default function Signup(props) {
   function renderConfirmationForm() {
     return (
       <form onSubmit={handleConfirmationSubmit}>
-        <FormGroup controlId="confirmationCode" bsSize="large">
-          <ControlLabel>Código de Confirmação</ControlLabel>
-          <FormControl
-            autoFocus
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="confirmationCode"
+            label="Código de Confirmação"
+            name="confirmationCode"
             type="tel"
-            onChange={handleFieldChange}
+            autoFocus
             value={fields.confirmationCode}
+            onChange={handleFieldChange}
           />
-          <HelpBlock>Por favor, verifique seu email para visualizar o código.</HelpBlock>
-        </FormGroup>
         <LoaderButton
           block
           type="submit"
@@ -109,31 +109,42 @@ export default function Signup(props) {
   function renderForm() {
     return (
       <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" bsSize="large">
-          <ControlLabel>Email</ControlLabel>
-          <FormControl
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email"
+            name="email"
             autoFocus
-            type="email"
             value={fields.email}
             onChange={handleFieldChange}
           />
-        </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Senha</ControlLabel>
-          <FormControl
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Senha"
             type="password"
+            id="password"
             value={fields.password}
             onChange={handleFieldChange}
           />
-        </FormGroup>
-        <FormGroup controlId="confirmPassword" bsSize="large">
-          <ControlLabel>Confirme a senha</ControlLabel>
-          <FormControl
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Confirme a Senha"
             type="password"
-            onChange={handleFieldChange}
+            id="confirmPassword"
             value={fields.confirmPassword}
-          />
-        </FormGroup>
+            onChange={handleFieldChange}
+          />  
         <LoaderButton
           block
           type="submit"

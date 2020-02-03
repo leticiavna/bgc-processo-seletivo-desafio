@@ -1,4 +1,5 @@
-.App {
+.App .AppBar {
+    background-color: #FFFFFF;
 }
 
 .App .navbar-brand {
