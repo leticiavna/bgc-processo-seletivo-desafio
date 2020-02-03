@@ -1,13 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
 import "./Signup.css";
 import { Auth } from "aws-amplify";
 import TextField from '@material-ui/core/TextField';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
+
+const useStyles = makeStyles(theme => ({
+  paper: {
+    marginTop: theme.spacing(6),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 
 export default function Signup(props) {
+  const classes = useStyles();
+  
   const [fields, handleFieldChange] = useFormFields({
     email: "",
     password: "",
@@ -108,7 +142,10 @@ export default function Signup(props) {
 
   function renderForm() {
     return (
-      <form onSubmit={handleSubmit}>
+      <Fragment>
+      <form onSubmit={handleSubmit} className={classes.form} noValidate>
+      <Grid container>
+       <Grid item xs={12}>
         <TextField
             variant="outlined"
             margin="normal"
@@ -121,6 +158,8 @@ export default function Signup(props) {
             value={fields.email}
             onChange={handleFieldChange}
           />
+          </Grid>
+        <Grid item xs={12}>
         <TextField
             variant="outlined"
             margin="normal"
@@ -133,6 +172,8 @@ export default function Signup(props) {
             value={fields.password}
             onChange={handleFieldChange}
           />
+          </Grid>
+          <Grid item xs={12}>
         <TextField
             variant="outlined"
             margin="normal"
@@ -144,23 +185,45 @@ export default function Signup(props) {
             id="confirmPassword"
             value={fields.confirmPassword}
             onChange={handleFieldChange}
-          />  
-        <LoaderButton
-          block
-          type="submit"
-          bsSize="large"
-          isLoading={isLoading}
-          disabled={!validateForm()}
-        >
-          Signup
-        </LoaderButton>
+          />
+          </Grid>
+          </Grid>
+        <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            disabled={!validateForm()}
+          >
+            Cadastrar
+          </Button>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Link href="/login" variant="body2">
+                já tem uma conta? entre aqui 
+              </Link>
+            </Grid>
+          </Grid>
       </form>
+      </Fragment>
     );
   }
 
   return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Cadastre-se
+        </Typography>
     <div className="Signup container">
       {newUser === null ? renderForm() : renderConfirmationForm()}
     </div>
+    </div>
+    </Container>
   );
 }
