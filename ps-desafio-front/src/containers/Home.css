@@ -1,14 +1,20 @@
-.Home .lander {
-  background-color: #FCE029;
-  padding: 80px 0;
-  text-align: center;
+.Home Link {
+    text-decoration: none;
 }
 
-.Home .lander h1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: bolder;
+.Home #lander {
+    background-image: url("https://www.freepnglogos.com/uploads/minions-png/minions-png-images-heroes-minions-transparent-16.png");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: right;
 }
 
-.Home .lander p {
-  color: #999;
+.Home #lander b {
+    color: #FCE029;
+}
+
+.Home #choose img {
+    max-height: 20vh;
+    border-radius: 30%;
+    background-color: #F4F4F4;
 }

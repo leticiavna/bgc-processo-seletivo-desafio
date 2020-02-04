@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Muli", "Poppins", sans-serif;
+  font-family: "Montserrat", "Poppins", sans-serif;
   font-size: 16px;
   color: #333;
   -webkit-font-smoothing: antialiased;
@@ -9,8 +9,13 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", serif;
+  font-weight: 700;
+}
+
+p {
   font-family: "Poppins", serif;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 select.form-control,

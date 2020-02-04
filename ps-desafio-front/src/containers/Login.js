@@ -41,6 +41,7 @@ const useStyles = makeStyles(theme => ({
 export default function Login(props) {
   
   const classes = useStyles();
+  // eslint-disable-next-line
   const [isLoading, setIsLoading] = useState(false);
   // hook: keeps input data
   const [fields, handleFieldChange] = useFormFields({

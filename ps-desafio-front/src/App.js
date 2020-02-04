@@ -8,10 +8,30 @@ import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+      'Poppins',
+      'Montserrat',
+      '"Helvetica Neue"',
+      'sans-serif'
+    ].join(','),
+  }
+});
+
+const useStyles = makeStyles(theme => ({
+  appbar: {
+    backgroundColor: "#FFF",
+  }
+}));
 
 // propriedades parametro
 function App(props) {
+  const classes = useStyles();
+  
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   
@@ -43,18 +63,23 @@ function App(props) {
 
   return (
     !isAuthenticating &&
+    <ThemeProvider theme={theme}>
     <div className="App">
-    <AppBar position="static">
+    <AppBar className={classes.appbar} position="static">
         <Toolbar>
         {isAuthenticated
           ?
           <Fragment>
-          <Link href="/">
-            <Typography variant="h6">
-              home
-            </Typography>
+            <Link href="/">
+              <Button color="inherit" >
+                HOME
+              </Button>
             </Link>
-          <Button color="inherit" onClick={handleLogout}>Logout</Button>
+            <Link>
+              <Button color="inherit" onClick={handleLogout}>
+                logout
+              </Button>
+            </Link>
           </Fragment>
           :
           <Fragment>
@@ -74,6 +99,7 @@ function App(props) {
       </AppBar>
       <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
     </div>
+    </ThemeProvider>
   );
 }
 
