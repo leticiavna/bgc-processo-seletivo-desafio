@@ -6,7 +6,6 @@ import { Auth } from "aws-amplify";
 import AppBar from '@material-ui/core/AppBar';
 import Link from '@material-ui/core/Link';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -71,12 +70,17 @@ function App(props) {
           ?
           <Fragment>
             <Link href="/">
-              <Button color="inherit" >
+              <Button>
                 HOME
               </Button>
             </Link>
             <Link>
-              <Button color="inherit" onClick={handleLogout}>
+              <Button>
+                minhas reservas
+              </Button>
+            </Link>
+            <Link>
+              <Button onClick={handleLogout}>
                 logout
               </Button>
             </Link>
@@ -84,20 +88,24 @@ function App(props) {
           :
           <Fragment>
             <Link href="/signup">
-              <Typography variant="h6">
+              <Button>
               Cadastre-se
-              </Typography>
+              </Button>
             </Link>
             <Link href="/login">
-              <Typography variant="h6">
+              <Button variant="h6">
               Login
-              </Typography>
+              </Button>
             </Link>
           </Fragment>
         }
         </Toolbar>
       </AppBar>
       <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
+      <footer>
+        <p>images are all from google images</p>
+        <p>credits to the author</p>
+      </footer>
     </div>
     </ThemeProvider>
   );

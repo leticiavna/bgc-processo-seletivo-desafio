@@ -9,12 +9,29 @@
     background-position: right;
 }
 
+@media (max-width: 677px) {
+    .Home #lander {
+        background-image: url("https://lh5.googleusercontent.com/proxy/eoYJyxvUeVyjwrBgC3fdX-ByAyTtiolYwjBTvLD9ZSUoCCv6quA_MQA3-lRukcYCVY--7smRV52ZfY9hTizJ3Bx9gFhCwI1QiRCTW-ZwmleSbHRvul-FalO7QFJgHoPm");
+    }
+}
+
+@media (max-width: 599px) {
+    .Home #lander Button {
+        display: none;
+    }
+}
+
 .Home #lander b {
     color: #FCE029;
 }
 
 .Home #choose img {
-    max-height: 20vh;
+    max-width: 20vw;
     border-radius: 30%;
     background-color: #F4F4F4;
+}
+
+.Home #purchase {
+    height: 50vh;
+    background-color: #FCE029;
 }
