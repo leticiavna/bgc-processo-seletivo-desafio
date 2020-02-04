@@ -1,4 +1,3 @@
-# NOTE: update this with your service name
 # Serverless Framework creates your stack on AWS using this as the name.
 service: ps-desafio-api
 
