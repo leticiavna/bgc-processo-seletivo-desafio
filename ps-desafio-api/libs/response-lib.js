@@ -10,8 +10,6 @@ export function failure(body) {
 }
 
 function buildResponse(statusCode, body) {
-  console.log(statusCode);
-  console.log(body);
   return {
     statusCode: statusCode,
     headers: {

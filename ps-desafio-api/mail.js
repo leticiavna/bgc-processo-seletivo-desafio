@@ -9,11 +9,9 @@ const FROM_MAIL = process.env.EMAIL;
 // Funcao pra passar o formulario
 function generateEmailParams (body) {
   const { clientMail, clientName, content } = JSON.parse(body);
-  console.log(clientMail, clientName, content);
   if (!(clientMail && clientName && content)) {
     throw new Error('Parâmetros faltando! Confira os parâmetros \'clientMail\', \'clientName\', \'content\'.');
   }
-  console.log(clientMail, clientName, content);
   return {
     Source: FROM_MAIL,
     Destination: { ToAddresses: [FROM_MAIL] }, // FIXME: o TO tem q ser o cliente e o CC tem q ser BGC
@@ -22,7 +20,7 @@ function generateEmailParams (body) {
         Body: {
             Text: {
             Charset: 'UTF-8',
-            Data: `Mensagem enviada de email ${clientMail} por ${clientName}. \nConteúdo: ${content}`
+            Data: `Foi feita uma nova reserva por ${clientName}, com o email ${clientMail}. \nMinions reservados: ${content}`
             }
         },
         Subject: {
