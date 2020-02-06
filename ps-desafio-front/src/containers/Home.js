@@ -1,7 +1,7 @@
 import React from "react";
 import "./Home.css";
-import ChooseMinion from "../components/ChooseMinion";
-import PurchaseForm from "../components/PurchaseForm.js";
+import ChooseMinion from "./ChooseMinion";
+import PurchaseForm from "./PurchaseForm.js";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Container } from '@material-ui/core';

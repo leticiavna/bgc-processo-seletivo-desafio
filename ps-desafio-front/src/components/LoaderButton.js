@@ -1,7 +1,6 @@
 import React from "react";
+import { Button, CircularProgress } from "@material-ui/core";
 import "./LoaderButton.css";
-import Button from '@material-ui/core/Button';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
 
 export default function LoaderButton({
   isLoading,
@@ -15,7 +14,7 @@ export default function LoaderButton({
       disabled={disabled || isLoading}
       {...props}
     >
-      {isLoading && <AutorenewIcon className="spinning" />}
+      {isLoading && <CircularProgress className={"spinner"} size={9} />}
       {props.children}
     </Button>
   );

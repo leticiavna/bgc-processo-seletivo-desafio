@@ -3,13 +3,14 @@ import { useFormFields } from "../libs/hooksLib";
 import { API } from "aws-amplify"; // faz as chamadas da API
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import { Chip, FormControl, Input, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
+import LoaderButton from "../components/LoaderButton";
 
-function getStyles(name, personName, theme) {
+
+function getStyles(name, chosenMinion, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      chosenMinion.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
@@ -87,7 +88,7 @@ const minionsNames = [
 
 export default function PurchaseForm() {
   const classes = useStyles();
-  
+  const [isLoading, setIsLoading] = React.useState(false);
   const theme = useTheme();
   
   // hook: keeps input data
@@ -119,6 +120,7 @@ export default function PurchaseForm() {
   
   async function handleSubmit(event) {
     event.preventDefault(); // ????
+    setIsLoading(true);
     const body = {
       name: fields.name,
       email: fields.email,
@@ -130,11 +132,14 @@ export default function PurchaseForm() {
       console.log(response);
       sendMailPurchase(body);
       alert("minion purchased!");
+      setIsLoading(false);
     }).catch(error => {
-      alert(error.response)
+      alert(error.response);
+      setIsLoading(false);
     });
   }
   
+
   return (
     <section id="purchase">
       <div>
@@ -175,7 +180,7 @@ export default function PurchaseForm() {
                 </FormControl>
               </Grid>
             </Grid>
-            <Button disabled={!validateForm()} className={classes.purchaseSubmit} variant="contained" type="submit">reservar</Button>
+            <LoaderButton isLoading={isLoading} className={classes.purchaseSubmit} disabled={!validateForm()} variant="contained" type="submit">reservar</LoaderButton>
           </form>
         </div>
     </section>

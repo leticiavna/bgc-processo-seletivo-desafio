@@ -1,5 +1,5 @@
 import React from "react";
-import MinionItem from './MinionItem';
+import MinionItem from '../components/MinionItem';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';

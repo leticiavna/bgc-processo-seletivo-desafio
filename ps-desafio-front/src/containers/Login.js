@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-// import LoaderButton from "../components/LoaderButton";
+import LoaderButton from "../components/LoaderButton";
 import "./Login.css";
 import { Auth } from "aws-amplify";
 import { useFormFields } from "../libs/hooksLib";
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -103,17 +102,14 @@ export default function Login(props) {
             value={fields.password}
             onChange={handleFieldChange}
           />
-          
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            disabled={!validateForm()}
-          >
-            Entrar
-            </Button>
+          <LoaderButton
+          isLoading={isLoading}
+          color="primary"
+          fullWidth
+          className={classes.submit}
+          disabled={!validateForm()} 
+          variant="contained" type="submit">Entrar
+          </LoaderButton>
       <Grid container>
         <Grid item xs>
           <Link href="/signup">

@@ -4,7 +4,6 @@ import { useFormFields } from "../libs/hooksLib";
 import { Auth } from "aws-amplify";
 import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -23,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#FCE029",
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -124,6 +123,9 @@ export default function Signup(props) {
             onChange={handleFieldChange}
           />
         <LoaderButton
+          variant="contained"
+          color="primary"
+          fullWidth
           block
           type="submit"
           bsSize="large"
@@ -184,16 +186,15 @@ export default function Signup(props) {
           />
           </Grid>
           </Grid>
-        <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            disabled={!validateForm()}
-          >
-            Cadastrar
-          </Button>
+          <LoaderButton
+          fullWidth
+          isLoading={isLoading}
+          className={classes.submit}
+          disabled={!validateForm()}
+          color="primary"
+          variant="contained"
+          type="submit">Cadastrar
+          </LoaderButton>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">
