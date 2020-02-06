@@ -1,26 +1,31 @@
 import { success, failure } from "./libs/response-lib";
 var aws = require('aws-sdk');
+
 // Simple Email Service by AWS
 var ses = new aws.SES({region: 'us-east-1'});
 const FROM_MAIL = process.env.EMAIL;
 // const CC_MAIL = process.env.CC_EMAIL;
-// const DOMAIN = process.env.DOMAIN;
 
 // Funcao pra passar o formulario
 function generateEmailParams (body) {
   const { clientMail, clientName, content } = JSON.parse(body);
   if (!(clientMail && clientName && content)) {
-    throw new Error('Parâmetros faltando! Confira os parâmetros \'clientMail\', \'clientName\', \'content\'.');
+    throw new Error('Parâmetros faltando! Confira os parâmetros \'Email\', \'Nome\' e \'Minions escolhidos\'.');
   }
   return {
     Source: FROM_MAIL,
-    Destination: { ToAddresses: [FROM_MAIL] }, // FIXME: o TO tem q ser o cliente e o CC tem q ser BGC
-    ReplyToAddresses: [clientMail],
+    Destination: {
+     CcAddresses: [],  
+     ToAddresses: [FROM_MAIL] // FIXME Aqui não vai o email do cliente porque o SES está no modo Sandbox
+   },
+    ReplyToAddresses: FROM_MAIL,
     Message: {
         Body: {
             Text: {
             Charset: 'UTF-8',
-            Data: `Foi feita uma nova reserva por ${clientName}, com o email ${clientMail}. \nMinions reservados: ${content}`
+            Data: `Olá! \n
+            Foi feita uma nova reserva por ${clientName}, com o email ${clientMail}. \n
+            Minions reservados: ${content}`
             }
         },
         Subject: {
