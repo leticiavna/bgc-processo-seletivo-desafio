@@ -15,23 +15,37 @@
     }
 }
 
-@media (max-width: 599px) {
-    .Home #lander Button {
-        display: none;
-    }
-}
-
 .Home #lander b {
     color: #FCE029;
 }
 
 .Home #choose img {
-    max-width: 20vw;
+    max-width: 13vw;
     border-radius: 30%;
     background-color: #F4F4F4;
 }
 
 .Home #purchase {
-    height: 50vh;
     background-color: #FCE029;
+    padding: 5%;
+}
+
+.Home #purchase h1 {
+    text-align: center;
+}
+
+.Home #purchase form button {
+    margin: 0 auto;
+    display: block;
+}
+
+
+@media (max-width: 599px) {
+    .Home #lander Button {
+        display: none;
+    }
+    
+    .Home #choose img {
+        max-width: 30vw;
+    }
 }

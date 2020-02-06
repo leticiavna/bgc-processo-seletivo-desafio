@@ -1,18 +1,31 @@
 import React from "react";
 import { useFormFields } from "../libs/hooksLib";
 import { API } from "aws-amplify"; // faz as chamadas da API
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { Checkbox, Container, FormControl, Input, InputLabel, ListItemText, MenuItem, Select, TextField } from '@material-ui/core';
+import { Chip, FormControl, Input, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
+
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
 
 const useStyles = makeStyles(theme => ({
   container: {
     marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(14),
+    marginBottom: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 500,
+      maxHeight: 1300,
+    },
   },
   root: {
     flexGrow: 1,
@@ -30,6 +43,8 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
+    minWidth: 120,
+    maxWidth: 300,
   },
   purchaseSubmit: {
     backgroundColor: "#0A75BC",
@@ -39,7 +54,14 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: "#231F20"
     }
-  }
+  },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: 2,
+  },
 }));
 
 // Material UI properties
@@ -65,6 +87,8 @@ const minionsNames = [
 
 export default function PurchaseForm() {
   const classes = useStyles();
+  
+  const theme = useTheme();
   
   // hook: keeps input data
   const [fields, handleFieldChange] = useFormFields({
@@ -99,7 +123,7 @@ export default function PurchaseForm() {
       name: fields.name,
       email: fields.email,
       minions: chosenMinion
-    }
+    };
     // chama a api 
     await API.post("purchases", "/purchases", { body: body
     }).then(response => {
@@ -113,9 +137,8 @@ export default function PurchaseForm() {
   
   return (
     <section id="purchase">
-      <Container className={classes.container}>
+      <div>
         <h1> faça já sua reserva. </h1>
-        <div className={classes.root}>
           <form autoComplete="off" onSubmit={handleSubmit}>
             <Grid container spacing={3}>
               <Grid item xs={6}>
@@ -125,23 +148,27 @@ export default function PurchaseForm() {
                 <TextField id="email" label="seu email" type="email" value={fields.email} onChange={handleFieldChange} fullWidth />
               </Grid>
               <Grid item xs={12}>
-                <FormControl className={classes.formControl}>
+                <FormControl fullWidth className={classes.formControl}>
                   <InputLabel id="minions-label">minions que eu quero:</InputLabel>
                   <Select
                     labelId="minions-label"
                     id="minions"
-                    autoWidth
                     multiple
                     value={chosenMinion}
                     onChange={handleChange}
                     input={<Input />}
-                    renderValue={selected => selected.join(', ')}
+                    renderValue={selected => (
+                      <div className={classes.chips}>
+                        {selected.map(value => (
+                        <Chip key={value} label={value} className={classes.chip} />
+                      ))}
+                    </div>
+                  )}
                     MenuProps={MenuProps}
                   >
                     {minionsNames.map(name => (
-                      <MenuItem key={name} value={name}>
-                        <Checkbox checked={chosenMinion.indexOf(name) > -1} />
-                        <ListItemText primary={name} />
+                      <MenuItem key={name} value={name} 
+                      style={getStyles(name, chosenMinion, theme)}> {name} 
                       </MenuItem>
                     ))}
                   </Select>
@@ -151,7 +178,6 @@ export default function PurchaseForm() {
             <Button disabled={!validateForm()} className={classes.purchaseSubmit} variant="contained" type="submit">reservar</Button>
           </form>
         </div>
-      </Container>
     </section>
   );
 }

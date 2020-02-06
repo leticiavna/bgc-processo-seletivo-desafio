@@ -8,17 +8,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-  paper: {
-    opacity: 0.8,
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    transition: "0.4s",
-    '&:hover': {
-      backgroundColor: "#F4F4F4",
-      opacity: 1
-    }
-  },
 }));
 
 

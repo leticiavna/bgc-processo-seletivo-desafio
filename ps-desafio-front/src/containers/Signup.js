@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
-import "./Signup.css";
 import { Auth } from "aws-amplify";
 import TextField from '@material-ui/core/TextField';
 import Avatar from '@material-ui/core/Avatar';
