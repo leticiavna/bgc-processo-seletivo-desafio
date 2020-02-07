@@ -24,7 +24,6 @@ provider:
     tableName: ${env:DYNAMO_TABLE_NAME}
     NODE_ENV: ${env:NODE_ENV}
     EMAIL: ${env:FROM_EMAIL}
-    CC_EMAIL: ${env:CC_EMAIL}
     DOMAIN: ${env:DOMAIN}
 
   # 'iamRoleStatements' defines the permission policy for the Lambda function.
