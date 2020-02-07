@@ -1,12 +1,6 @@
-.App Link {
+.App .home-link Link,
+.App .home-link Link:hover {
   text-decoration: none;
-}
-
-.App Link:hover {
-  text-decoration: none;
-}
-.App .AppBar {
-    background-color: #FFFFFF;
 }
 
 .App .navbar-brand {

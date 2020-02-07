@@ -26,6 +26,7 @@
 }
 
 .Home #purchase {
+    margin-top: 50px;
     background-color: #FCE029;
     padding: 5%;
 }

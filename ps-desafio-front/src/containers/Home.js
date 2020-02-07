@@ -6,9 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { Container } from '@material-ui/core';
 
-// Aqui pode usar a função pra alterar o css
-// Pra não ficar uma coisa enorme, seria legal cada section ter seu arquivo direitinho
-// E virar um componente, q aí podia chamar na home, fica como TODO
 const useStyles = makeStyles(theme => ({
   lander: {
     backgroundColor: "#0A75BC",

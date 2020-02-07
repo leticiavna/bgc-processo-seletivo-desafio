@@ -3,9 +3,13 @@ import { useFormFields } from "../libs/hooksLib";
 import { API } from "aws-amplify"; // faz as chamadas da API
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import { Chip, FormControl, Input, InputLabel, MenuItem, Select, TextField } from '@material-ui/core';
+import { Chip, FormControl, Input, InputLabel, MenuItem, Select, Snackbar, TextField } from '@material-ui/core';
 import LoaderButton from "../components/LoaderButton";
+import MuiAlert from '@material-ui/lab/Alert';
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 function getStyles(name, chosenMinion, theme) {
   return {
@@ -45,12 +49,11 @@ const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
-    maxWidth: 300,
+    marginBottom: "30px"
   },
   purchaseSubmit: {
     backgroundColor: "#0A75BC",
     color: "#FFFFFF",
-    marginTop: "10px",
     transition: "0.3s",
     '&:hover': {
       backgroundColor: "#231F20"
@@ -101,6 +104,7 @@ export default function PurchaseForm() {
   // from docs: useState returns a pair — an array with two items. 
   // The first item is the current value, and the second is a function that lets us update it.
   const [chosenMinion, setChosenMinion] = React.useState([]);
+  const [purchaseCompleted, setPurchaseCompleted] = React.useState(null);
   
   const handleChange = event => {
     setChosenMinion(event.target.value);
@@ -119,7 +123,7 @@ export default function PurchaseForm() {
   }
   
   async function handleSubmit(event) {
-    event.preventDefault(); // ????
+    event.preventDefault(); // ??
     setIsLoading(true);
     const body = {
       name: fields.name,
@@ -138,7 +142,6 @@ export default function PurchaseForm() {
       setIsLoading(false);
     });
   }
-  
 
   return (
     <section id="purchase">

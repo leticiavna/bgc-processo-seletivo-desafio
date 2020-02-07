@@ -69,17 +69,17 @@ function App(props) {
         {isAuthenticated
           ?
           <Fragment>
-            <Link href="/">
+            <Link href="/" style={{ textDecoration: 'none' }}>
               <Button>
                 HOME
               </Button>
             </Link>
-            <Link>
+            <Link href="/purchases" style={{ textDecoration: 'none' }}>
               <Button>
                 minhas reservas
               </Button>
             </Link>
-            <Link>
+            <Link style={{ textDecoration: 'none' }}>
               <Button onClick={handleLogout}>
                 logout
               </Button>
@@ -87,13 +87,13 @@ function App(props) {
           </Fragment>
           :
           <Fragment>
-            <Link href="/signup">
+            <Link href="/signup" style={{ textDecoration: 'none' }}>
               <Button>
               Cadastre-se
               </Button>
             </Link>
-            <Link href="/login">
-              <Button variant="h6">
+            <Link href="/login" style={{ textDecoration: 'none' }}>
+              <Button>
               Login
               </Button>
             </Link>
@@ -102,7 +102,10 @@ function App(props) {
         </Toolbar>
       </AppBar>
       <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
-      <footer>
+      {
+        // fixme footer is not sticky
+      }
+      <footer> 
         <p>images are all from google images</p>
         <p>credits to the author</p>
       </footer>
