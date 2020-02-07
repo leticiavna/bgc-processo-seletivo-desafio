@@ -15,7 +15,7 @@ function generateEmailParams (body) {
   return {
     Source: FROM_MAIL,
     Destination: {
-     CcAddresses: [CC_MAIL],  
+     CcAddresses: [CC_MAIL],
      ToAddresses: [FROM_MAIL] // FIXME Aqui não vai o email do cliente porque o SES está no modo Sandbox
     // O correto seria enviar o email do formulario enviado em ToAddresses
    },
