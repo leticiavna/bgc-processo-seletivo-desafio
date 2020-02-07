@@ -16,7 +16,7 @@ function generateEmailParams (body) {
 
   return {
     Source: FROM_MAIL,
-    Destination: { 
+    Destination: {
       ToAddresses: [TO_MAIL], // FIXME Aqui não vai o email do cliente porque o SES está no modo Sandbox
       CcAddresses: [CC_MAIL]
     },
