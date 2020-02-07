@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import "./Home.css";
 import ChooseMinion from "./ChooseMinion";
 import PurchaseForm from "./PurchaseForm.js";
@@ -25,9 +25,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const scrollToRef = (ref) => window.scrollTo({
+  top: ref.current.offsetTop,
+  left: 0,
+  behavior: 'smooth'
+});
+
+
 export default function Home() {
   const classes = useStyles();
   
+	const myRef = useRef(null);
+
   return (
     <div className="Home container">
       <section className={classes.lander} id="lander">
@@ -35,10 +44,12 @@ export default function Home() {
           <h1>sempre quis ter um <b>minion</b>?</h1>
           <p>aqui na minions boutique você pode.</p>
           <p> é rápido, fácil e simples reservar o seu.</p>
-          <Button variant="contained" className={classes.seeMore}> veja mais </Button>
+          <Button onClick={()=>scrollToRef(myRef)} variant="contained" className={classes.seeMore}> veja mais </Button>
         </Container>
       </section>
-      <ChooseMinion />
+      <section id="choose" ref={myRef}>
+        <ChooseMinion />
+      </section>
       <PurchaseForm />
     </div>
   );

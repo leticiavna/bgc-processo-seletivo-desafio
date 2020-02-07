@@ -9,9 +9,16 @@
     background-position: right;
 }
 
-@media (max-width: 677px) {
+@media (max-width: 600px) {
     .Home #lander {
-        background-image: url("https://lh5.googleusercontent.com/proxy/eoYJyxvUeVyjwrBgC3fdX-ByAyTtiolYwjBTvLD9ZSUoCCv6quA_MQA3-lRukcYCVY--7smRV52ZfY9hTizJ3Bx9gFhCwI1QiRCTW-ZwmleSbHRvul-FalO7QFJgHoPm");
+        background-image: none;
+        text-align: center;
+    }
+}
+
+@media(max-width: 500px) {
+    .Home #lander {
+        font-size: 13px;
     }
 }
 

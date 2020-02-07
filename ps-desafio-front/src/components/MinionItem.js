@@ -11,7 +11,8 @@ const useStyles = makeStyles(theme => ({
     transition: "0.4s",
     '&:hover': {
       backgroundColor: "#F4F4F4",
-      opacity: 1
+      opacity: 1,
+      borderRadius: "10%"
     }
   },
 }));

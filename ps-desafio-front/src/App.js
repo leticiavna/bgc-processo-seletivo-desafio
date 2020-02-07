@@ -24,6 +24,10 @@ const theme = createMuiTheme({
 const useStyles = makeStyles(theme => ({
   appbar: {
     backgroundColor: "#FFF",
+  },
+  appToolbar: {
+    display: "flex",
+    justifyContent: "center",
   }
 }));
 
@@ -64,8 +68,8 @@ function App(props) {
     !isAuthenticating &&
     <ThemeProvider theme={theme}>
     <div className="App">
-    <AppBar className={classes.appbar} position="static">
-        <Toolbar>
+    <AppBar className={classes.appbar} position="static" >
+        <Toolbar className={classes.appToolbar}>
         {isAuthenticated
           ?
           <Fragment>

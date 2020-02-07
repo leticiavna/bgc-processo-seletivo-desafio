@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
 export default function ChooseMinion() {
   const classes = useStyles();
   return (      
-    <section id="choose">
       <Container>
         <h1 className={classes.title}> escolha o seu! </h1>
         <div className={classes.root}>
@@ -31,6 +30,5 @@ export default function ChooseMinion() {
           </Grid>
         </div>
       </Container>
-    </section>
   );
 }

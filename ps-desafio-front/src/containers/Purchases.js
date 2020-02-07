@@ -64,7 +64,7 @@ export default function Purchases(props) {
                  {purchases.map(row => (
                   <TableRow key={row.purchaseId}>
                   <TableCell component="th" scope="row"> 
-                      {row.minions.map(minion => minion).toString()}
+                      {row.minions.map(a => " "+a.toString()).toString()}
                     </TableCell>
                     <TableCell align="right">{row.name}</TableCell>
                     <TableCell align="right">{row.email}</TableCell>
