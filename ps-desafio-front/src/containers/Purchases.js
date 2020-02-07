@@ -8,11 +8,17 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { API } from "aws-amplify"; // faz as chamadas da API
 
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
+  },
+  spinner: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 });
 
@@ -28,14 +34,17 @@ export default function Purchases(props) {
       if (!props.isAuthenticated) {
         return;
       }
+      
+      setIsLoading(true);
     
       try {
         const purchases = await getPurchases();
         setPurchases(purchases);
-      } catch (e) {
-        alert(e);
+        setIsLoading(false);
+      } catch (error) {
+        alert(error.response);
+        setIsLoading(false);
       }
-      setIsLoading(false);
     }
     onLoad();
   }, [props.isAuthenticated]);
@@ -51,6 +60,10 @@ export default function Purchases(props) {
         <section>
           <h1> histórico de reservas </h1>
           <TableContainer component={Paper}>
+            {isLoading ? 
+            <div className={classes.spinner}>
+            <CircularProgress />
+            </div> :
             <Table className={classes.table} aria-label="simple table of purchases">
               <TableHead>
                 <TableRow>
@@ -72,6 +85,7 @@ export default function Purchases(props) {
                   </TableRow> ))}
               </TableBody>
             </Table>
+            }
           </TableContainer>
         </section>
       </Container>

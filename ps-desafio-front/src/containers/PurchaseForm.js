@@ -127,9 +127,8 @@ export default function PurchaseForm() {
     // chama a api 
     await API.post("purchases", "/purchases", { body: body
     }).then(response => {
-      console.log(response);
       sendMailPurchase(body);
-      alert("minion purchased!");
+      alert("Reserva realizada com sucesso!");
       setIsLoading(false);
     }).catch(error => {
       alert(error.response);
