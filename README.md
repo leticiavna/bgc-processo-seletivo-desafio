@@ -23,6 +23,7 @@ Na homepage, é possível fazer as reservas: informando o nome, email e os minio
 ### Rodando local
 (work in progress)
 
+-----
 
 #### Pendências
 - Alertas mais amigáveis e bonitos
