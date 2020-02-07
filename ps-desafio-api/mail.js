@@ -4,7 +4,7 @@ var aws = require('aws-sdk');
 // Simple Email Service by AWS
 var ses = new aws.SES({region: 'us-east-1'});
 const FROM_MAIL = process.env.EMAIL;
-// const CC_MAIL = process.env.CC_EMAIL;
+const CC_MAIL = process.env.CC_EMAIL;
 
 // Funcao pra passar o formulario
 function generateEmailParams (body) {
@@ -15,8 +15,9 @@ function generateEmailParams (body) {
   return {
     Source: FROM_MAIL,
     Destination: {
-     CcAddresses: [],  
+     CcAddresses: [CC_MAIL],  
      ToAddresses: [FROM_MAIL] // FIXME Aqui não vai o email do cliente porque o SES está no modo Sandbox
+    // O correto seria enviar o email do formulario enviado em ToAddresses
    },
     ReplyToAddresses: FROM_MAIL,
     Message: {
