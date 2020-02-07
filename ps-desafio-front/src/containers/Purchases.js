@@ -61,18 +61,15 @@ export default function Purchases(props) {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {[{}].concat(purchases).map((row, i) =>
-                  i !== 0 ? (
+                 {purchases.map(row => (
                   <TableRow key={row.purchaseId}>
-                    <TableCell component="th" scope="row">
-                     {row.minions}
+                  <TableCell component="th" scope="row"> 
+                      {row.minions.map(minion => minion).toString()}
                     </TableCell>
                     <TableCell align="right">{row.name}</TableCell>
                     <TableCell align="right">{row.email}</TableCell>
                     <TableCell align="right">{new Date(row.createdAt).toLocaleString()}</TableCell>
-                  </TableRow> )
-                  : null
-                )}
+                  </TableRow> ))}
               </TableBody>
             </Table>
           </TableContainer>
