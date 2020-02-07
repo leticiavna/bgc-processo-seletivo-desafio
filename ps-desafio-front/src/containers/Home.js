@@ -51,6 +51,11 @@ export default function Home() {
         <ChooseMinion />
       </section>
       <PurchaseForm />
+      <footer> 
+      <p>images are all from google images</p>
+      <p>credits to the author</p>
+    </footer>
     </div>
+    
   );
 }

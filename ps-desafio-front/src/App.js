@@ -106,13 +106,6 @@ function App(props) {
         </Toolbar>
       </AppBar>
       <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
-      {
-        // fixme footer is not sticky
-      }
-      <footer> 
-        <p>images are all from google images</p>
-        <p>credits to the author</p>
-      </footer>
     </div>
     </ThemeProvider>
   );
