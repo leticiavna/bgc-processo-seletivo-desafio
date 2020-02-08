@@ -31,6 +31,9 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  help: {
+    fontSize: "12px"
+  }
 }));
 
 
@@ -185,6 +188,7 @@ export default function Signup(props) {
             onChange={handleFieldChange}
           />
           </Grid>
+          <span className={classes.help}> sua senha deve conter letras maiúsculas, minúsculas, números e símbolos. </span>
           </Grid>
           <LoaderButton
           fullWidth
