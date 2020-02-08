@@ -113,7 +113,15 @@ export default function PurchaseForm() {
        clientMail: body.email,
        clientName: body.name,
        content: body.minions
-    }});
+    }}).then(
+      function(res) {
+        console.log("email sent");
+      })
+      .catch(
+        function(err) {
+          console.error(err, err.stack);
+          alert("Ocorreu um erro no envio do email. Verifique se os emails estão verificados no SES.");
+        });
   }
   
   async function handleSubmit(event) {
