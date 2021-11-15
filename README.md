@@ -19,10 +19,6 @@ Na homepage, é possível fazer as reservas: informando o nome, email e os minio
 - Serviços AWS: [AWS Lambda](https://aws.amazon.com/pt/lambda/), [AWS API Gateway](https://aws.amazon.com/pt/api-gateway/), [AWS S3](https://aws.amazon.com/pt/s3/), [AWS SES](https://aws.amazon.com/pt/ses/), [AWS DynamoDB](https://aws.amazon.com/pt/dynamodb/), [AWS Cognito](https://aws.amazon.com/pt/cognito/)
 - [Dashbird](https://dashbird.io/) - para debugar envios de emails
 
-
-### Rodando local
-(work in progress)
-
 -----
 
 #### Pendências
